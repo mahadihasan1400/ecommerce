@@ -52,7 +52,7 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                <a href="{{route('manage-order')}}"><i class="fa fa-table fa-fw"></i> Manage Orders</a>
             </li>
             <li>
                 <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>

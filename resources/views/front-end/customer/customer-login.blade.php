@@ -8,7 +8,7 @@
 @section('body')
     <div class="banner1">
         <div class="container">
-            <h3><a href="index.html">Home</a> / <span>Checkout</span></h3>
+            <h3><a href="index.html">Home</a> / <span>New Customer Login</span></h3>
         </div>
     </div>
 
@@ -17,12 +17,6 @@
         <div class="single-wl3">
             <div class="container">
                 <div class="row">
-
-                    <div class="col-md-12 well">
-                        <h3 class="text-center text-success">You have to login to complete your valuable order.If you
-                            are not registered then please sign up first. </h3>
-                        <br/>
-                    </div>
                     <div class="col-sm-6">
                         <h3 class="text-center text-success">Login</h3>
                         <br/>
@@ -30,8 +24,7 @@
                         <h3 class="text-center text-danger">{{Session::get('message')}}</h3>
                         <br/>
 
-                        <form action="{{route('customer-sign-in')}}" method="post">
-                            @csrf
+                        <form action="#" method="post">
                             <div class="form-group">
                                 <label class="col-form-label">Email</label>
                                 <input type="email" name="email" class="form-control"/>
@@ -48,8 +41,7 @@
                     <div class="col-sm-6">
                         <h3 class="text-center text-success">Crete an account</h3>
                         <br/>
-                        <form action="{{route('customer-sign-up')}}" method="post">
-                            @csrf
+                        <form action="" method="post">
                             <div class="form-group">
                                 <label class="col-form-label">First Name</label>
                                 <input type="text" name="first_name" class="form-control"/>

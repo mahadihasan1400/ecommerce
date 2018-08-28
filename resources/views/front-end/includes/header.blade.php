@@ -7,7 +7,15 @@
             <div class="top-right">
                 <ul>
                     <li><a href="checkout.html">Checkout</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    @if(Session::get('customerId'))
+                        <li><a href="#" onclick="document.getElementById('customerLogoutForm').submit()">Logout</a></li>
+                        <form id="customerLogoutForm" action="{{route('customer-logout')}}" method="post">
+                            @csrf
+                        </form>
+
+                    @else
+                        <li><a href="{{route('new-customer-login')}}">Login</a></li>
+                    @endif
                     <li><a href="registered.html"> Create Account </a></li>
                 </ul>
             </div>
@@ -66,19 +74,14 @@
                                     {{--<span id="simpleCart_quantity"--}}
                                     {{--class="simpleCart_quantity"></span>--}}
 
-                                    <span><?php if (Session::get('grandTotal') > 0) {
-                                            echo 'TK.' . ' ' . Session::get('grandTotal');
-                                        } else {
-                                            echo 'TK.' . ' ' . '0';
-                                        }?></span> ({{Cart::count()}} items)
+                                    <span>{{Cart::subtotal()}}</span> ({{Cart::count()}} items)
                                 </div>
                                 <img src="{{ asset('/') }}/front-end/images/bag.png" alt=""/>
                             </h3>
                         </a>
-                        <p><a href="{{route('show-cart')}}" class="simpleCart_empty"><?php if (Session::get('grandTotal') > 0) {
-                                } else {
-                                    echo 'Empty Cart';
-                                }?></a></p>
+                        @if(Cart::count()==0)
+                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+                        @endif
                         <div class="clearfix"></div>
                     </div>
                 </div>

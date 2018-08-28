@@ -38,19 +38,23 @@
                                     <tr>
                                         <td>{{$i++}}</td>
                                         <td>{{$cartProduct -> name}}</td>
-                                        <td><img src="{{asset($cartProduct -> options -> image)}}" alt="" height="50" width="100"></td>
+                                        <td><img src="{{asset($cartProduct -> options -> image)}}" alt="" height="50"
+                                                 width="100"></td>
                                         <td>TK. {{$cartProduct -> price}}</td>
                                         <td>
                                             <form action="{{route('update-cart')}}" method="POST">
-                                               @csrf
-                                                <input type="number" name="qty" value="{{$cartProduct -> qty}}" min="1"/>
-                                                <input type="hidden" name="cartId" value="{{$cartProduct -> rowId}}" min="1"/>
+                                                @csrf
+                                                <input type="number" name="qty" value="{{$cartProduct -> qty}}"
+                                                       min="1"/>
+                                                <input type="hidden" name="cartId" value="{{$cartProduct -> rowId}}"
+                                                       min="1"/>
                                                 <input type="submit" name="btn" value="Update"/>
                                             </form>
                                         </td>
                                         <td>TK. {{$total = $cartProduct -> qty * $cartProduct -> price}}</td>
                                         <td>
-                                            <a href="{{route('delete-cart-item',['cartId' => $cartProduct -> rowId])}}" class="btn btn-danger btn-xs">
+                                            <a href="{{route('delete-cart-item',['cartId' => $cartProduct -> rowId])}}"
+                                               class="btn btn-danger btn-xs">
                                                 <span class="glyphicon glyphicon-trash"></span>
                                             </a>
                                         </td>
@@ -81,7 +85,13 @@
 
                         <div class="row">
                             <div class="col-md-11 col-md-offset-1">
-                                <a href="{{route('checkout')}}" class="btn btn-success pull-right">CheckOut</a>
+                                @if(Session::get('customerId')&& Session::get('shippingId'))
+                                    <a href="{{route('checkout-payment')}}" class="btn btn-success pull-right">CheckOut</a>
+                                @elseif(Session::get('customerId'))
+                                    <a href="{{route('checkout-shipping')}}" class="btn btn-success pull-right">CheckOut</a>
+                                @else
+                                    <a href="{{route('checkout')}}" class="btn btn-success pull-right">CheckOut</a>
+                                @endif
                                 <a href="" class="btn btn-success">Continue Shopping</a>
                             </div>
                         </div>
